@@ -19,7 +19,7 @@
         margin: 0;
         padding: 0;
         height: 100%;
-        font-family: "Georgia", "Times New Roman", serif;
+        font-family: "Times New Roman", serif;
         background: #0d2a3d;
         color: var(--text);
       }
@@ -34,7 +34,7 @@
         width: 100%;
         background-image:
           linear-gradient(var(--navy-overlay), var(--navy-overlay)),
-          url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1800&q=80");
+          url("https://s39613.pcdn.co/wp-content/uploads/2019/06/when-everything-goes-right-in-the-classroom-190612.jpg");
         background-size: cover;
         background-position: center center;
         display: flex;
@@ -339,21 +339,12 @@
 
             <div class="logo-wrap">
               <div class="logo-badge"></div>
-              <div class="mascot" aria-hidden="true">
-                <div class="head"></div>
-                <div class="eye left"></div>
-                <div class="eye right"></div>
-                <div class="smile"></div>
-                <div class="body"></div>
-                <div class="arm left"></div>
-                <div class="arm right"></div>
-                <div class="leg left"></div>
-                <div class="leg right"></div>
+           url("https://upload.wikimedia.org/wikipedia/en/d/d2/Stitch_%28Lilo_%26_Stitch%29.svg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original");
               </div>
               <div class="logo">11</div>
             </div>
 
-            <div class="nav-item right">WISDOM</div>
+            <div class="nav-item middle">WISDOM</div>
             <div class="nav-item right">Directory</div>
             <div class="nav-item right">Occasions</div>
             <div class="nav-item right">Members</div>
