@@ -1,2 +1,373 @@
-# wisdom-landing-page
-Static landing page inspired by the classroom wisdom mockup
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>11 Wisdom</title>
+    <style>
+      :root {
+        --navy-overlay: rgba(16, 48, 68, 0.62);
+        --navy-deep: rgba(8, 28, 42, 0.7);
+        --text: #f4f4f2;
+        --muted: rgba(255,255,255,0.72);
+        --line: rgba(255,255,255,0.8);
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: "Georgia", "Times New Roman", serif;
+        background: #0d2a3d;
+        color: var(--text);
+      }
+
+      body {
+        overflow: hidden;
+      }
+
+      .hero {
+        position: relative;
+        height: 100vh;
+        width: 100%;
+        background-image:
+          linear-gradient(var(--navy-overlay), var(--navy-overlay)),
+          url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1800&q=80");
+        background-size: cover;
+        background-position: center center;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(255,255,255,0.04);
+        mix-blend-mode: screen;
+      }
+
+      .content {
+        position: relative;
+        width: min(1450px, 92vw);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .topbar {
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 28px;
+      }
+
+      .topbar .line {
+        position: absolute;
+        width: 100%;
+        top: 68px;
+        left: 0;
+        height: 1px;
+        background: rgba(255,255,255,0.82);
+      }
+
+      .nav {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(20px, 3vw, 72px);
+        padding-top: 18px;
+      }
+
+      .nav-item {
+        font-family: "Georgia", serif;
+        font-size: clamp(0.9rem, 1.2vw, 2rem);
+        color: rgba(255,255,255,0.9);
+        text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+        letter-spacing: 0.02em;
+        white-space: nowrap;
+      }
+
+      .nav-item.left {
+        margin-top: 0;
+      }
+
+      .nav-item.right {
+        margin-top: 0;
+      }
+
+      .logo-wrap {
+        position: relative;
+        width: clamp(160px, 19vw, 280px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 36px;
+      }
+
+      .logo {
+        position: relative;
+        z-index: 2;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Arial Black", "Segoe UI", sans-serif;
+        font-size: clamp(3.8rem, 4.8vw, 7rem);
+        font-weight: 900;
+        letter-spacing: -0.06em;
+        line-height: 1;
+        color: rgba(255,255,255,0.95);
+        text-transform: uppercase;
+        text-shadow: 0 2px 0 rgba(0,0,0,0.15);
+      }
+
+      .logo-badge {
+        position: absolute;
+        top: -18px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 92px;
+        height: 92px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.1);
+        z-index: 1;
+      }
+
+      .mascot {
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 92px;
+        z-index: 3;
+      }
+
+      .mascot .head {
+        position: absolute;
+        left: 50%;
+        top: 8px;
+        transform: translateX(-50%);
+        width: 74px;
+        height: 72px;
+        background: #f6dfe7;
+        border-radius: 46% 46% 41% 41%;
+        box-shadow: inset 0 -10px 0 rgba(0,0,0,0.04);
+      }
+
+      .mascot .eye {
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        background: #0c2e4d;
+        border-radius: 50%;
+        top: 36px;
+        z-index: 2;
+      }
+
+      .mascot .eye.left { left: 32px; }
+      .mascot .eye.right { right: 32px; }
+
+      .mascot .smile {
+        position: absolute;
+        left: 50%;
+        top: 50px;
+        transform: translateX(-50%);
+        width: 22px;
+        height: 14px;
+        border-bottom: 4px solid #0c2e4d;
+        border-radius: 0 0 18px 18px;
+      }
+
+      .mascot .body {
+        position: absolute;
+        left: 50%;
+        top: 60px;
+        transform: translateX(-50%);
+        width: 86px;
+        height: 60px;
+        background: #87d8f5;
+        border-radius: 30px 30px 16px 16px;
+      }
+
+      .mascot .arm {
+        position: absolute;
+        width: 18px;
+        height: 42px;
+        background: #f6dfe7;
+        border-radius: 14px;
+        top: 70px;
+      }
+
+      .mascot .arm.left { left: 24px; transform: rotate(28deg); }
+      .mascot .arm.right { right: 24px; transform: rotate(-28deg); }
+
+      .mascot .leg {
+        position: absolute;
+        width: 18px;
+        height: 32px;
+        background: #87d8f5;
+        border-radius: 12px;
+        top: 110px;
+      }
+
+      .mascot .leg.left { left: 38px; }
+      .mascot .leg.right { right: 38px; }
+
+      .hero-title {
+        position: relative;
+        margin-top: 64px;
+        text-align: center;
+        width: 100%;
+      }
+
+      .small-title {
+        font-family: "Georgia", serif;
+        font-size: clamp(1.2rem, 1.5vw, 1.75rem);
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        color: rgba(255,255,255,0.9);
+        text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+      }
+
+      .headline {
+        margin-top: 4px;
+        font-family: "Georgia", serif;
+        font-style: italic;
+        font-size: clamp(3.8rem, 6vw, 9rem);
+        line-height: 0.9;
+        font-weight: 400;
+        letter-spacing: -0.06em;
+        color: rgba(255,255,255,0.96);
+        text-shadow: 0 1px 2px rgba(0,0,0,0.25);
+      }
+
+      .headline .thin {
+        font-style: normal;
+        font-weight: 500;
+      }
+
+      .year {
+        margin-top: 16px;
+        font-family: "Georgia", serif;
+        font-size: clamp(0.9rem, 1.3vw, 1.4rem);
+        letter-spacing: 0.08em;
+        color: rgba(255,255,255,0.82);
+      }
+
+      .school-silhouette {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: none;
+      }
+
+      .school-silhouette::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 52%;
+        background: linear-gradient(
+          to bottom,
+          rgba(0,0,0,0) 10%,
+          rgba(0,0,0,0.08) 100%
+        );
+      }
+
+      @media (max-width: 900px) {
+        .nav {
+          gap: 18px;
+        }
+
+        .nav-item {
+          font-size: 0.95rem;
+        }
+
+        .logo-wrap {
+          margin: 0 18px;
+          width: 120px;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .hero {
+          background-position: center center;
+        }
+
+        .nav {
+          gap: 10px;
+          flex-wrap: wrap;
+        }
+
+        .logo-wrap {
+          order: -1;
+          width: 100%;
+          margin: 0 0 8px 0;
+        }
+
+        .hero-title {
+          margin-top: 26px;
+        }
+
+        .headline {
+          font-size: 3.1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hero">
+      <div class="content">
+        <div class="topbar">
+          <div class="line"></div>
+          <nav class="nav">
+            <div class="nav-item left">What's New</div>
+            <div class="nav-item left">Information</div>
+            <div class="nav-item left">Statements</div>
+
+            <div class="logo-wrap">
+              <div class="logo-badge"></div>
+              <div class="mascot" aria-hidden="true">
+                <div class="head"></div>
+                <div class="eye left"></div>
+                <div class="eye right"></div>
+                <div class="smile"></div>
+                <div class="body"></div>
+                <div class="arm left"></div>
+                <div class="arm right"></div>
+                <div class="leg left"></div>
+                <div class="leg right"></div>
+              </div>
+              <div class="logo">11</div>
+            </div>
+
+            <div class="nav-item right">WISDOM</div>
+            <div class="nav-item right">Directory</div>
+            <div class="nav-item right">Occasions</div>
+            <div class="nav-item right">Members</div>
+          </nav>
+        </div>
+
+        <div class="hero-title">
+          <div class="small-title">Knowledge of Mind, Wisdom of Heart</div>
+          <div class="headline">
+            Scientia<span class="thin"> Mentis,</span> Sapientia <span class="thin">Cordis</span>
+          </div>
+          <div class="year">A.Y. 2026 - 2027</div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
